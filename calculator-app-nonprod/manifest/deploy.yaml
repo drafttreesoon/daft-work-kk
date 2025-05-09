@@ -3,22 +3,27 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: nginx
-  name: nginx
+    app: draft-api
+  name: draft-api
+  namespace: draft-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: draft-api
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: nginx
+        app: draft-api
     spec:
       containers:
-      - image: nginx
-        name: nginx
+      - image: habor.analytichpxv3.online/kubernetes-workshop/draft-api:v9.9.9 
+        name: draft-api
         resources: {}
+        ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: dalf-auth
 status: {}
